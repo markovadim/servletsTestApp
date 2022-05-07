@@ -11,21 +11,30 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @WebServlet(name = "HomePageServlet", value = "/home")
 public class HomePageServlet extends HttpServlet {
-    private List<User> userList;
+    public static List<User> userList;
 
     @Override
     public void init() throws ServletException {
         userList = new CopyOnWriteArrayList<>();
+        userList.add(new User("defaultUserForTest",22,"xsnxq@mi"));
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("Users", userList);
-        request.getRequestDispatcher("index.jsp");
+        request.setAttribute("userList", userList);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF8");
+        final String name = request.getParameter("name");
+        final String age = request.getParameter("age");
+        final String email = request.getParameter("email");
 
+        final User user = new User(name,Integer.valueOf(age),email);
+        userList.add(user);
+        System.out.println(userList);
+        doGet(request, response);
     }
 }

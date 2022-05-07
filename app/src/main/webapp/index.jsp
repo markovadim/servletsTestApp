@@ -1,31 +1,30 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <title>Page</title>
 </head>
 
-<title>Page</title>
+
 <body>
+<h1>Users</h1>
+<c:forEach var="user" items="${requestScope.userList}">
+    <ul>
+        <li>Name: <c:out value="${user.name}"></c:out></li>
+        <li>Age: <c:out value="${user.age}"></c:out></li>
+        <li>Email: <c:out value="${user.email}"></c:out></li>
+    </ul>
+    <hr/>
+</c:forEach>
 
-<h1>My First Heading</h1>
-
-<p>User</p>
-
-<p><b>Ваше имя:</b><br>
-    <input type="text" size="40">
-</p>
-
-<p><b>Ваш возраст:</b><br>
-    <input type="text" size="40">
-</p>
-
-<p><b>Ваш email:</b><br>
-    <input type="text" size="40">
-</p>
-
-<p>
-    <input type="submit" , value="Register" size="40">
-</p>
+<h2>New User</h2>
+<form method="post" action="/home">
+    <label><input type="text" name="name"></label>Name<br>
+    <label><input type="number" name="age"></label>Age<br>
+    <label><input type="text" name="email"></label>Email<br>
+    <input type="submit" value="Ok"><br>
+</form>
 
 </body>
 </html>
