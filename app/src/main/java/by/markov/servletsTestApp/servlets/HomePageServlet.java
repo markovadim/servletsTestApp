@@ -16,7 +16,7 @@ public class HomePageServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         userList = new CopyOnWriteArrayList<>();
-        userList.add(new User("defaultUserForTest",22,"xsnxq@mi"));
+        userList.add(new User("defaultUserForTest", 22, "xsnxq@mi"));
     }
 
     @Override
@@ -31,10 +31,25 @@ public class HomePageServlet extends HttpServlet {
         final String name = request.getParameter("name");
         final String age = request.getParameter("age");
         final String email = request.getParameter("email");
+        if (checkUser(request)) {
+            doGet(request, response);
+        } else {
+            final User user = new User(name, Integer.valueOf(age), email);
+            userList.add(user);
+            System.out.println(userList);
+            doGet(request, response);
+        }
+    }
 
-        final User user = new User(name,Integer.valueOf(age),email);
-        userList.add(user);
-        System.out.println(userList);
-        doGet(request, response);
+    private boolean checkUser(HttpServletRequest request) {
+        boolean result = false;
+        final String name = request.getParameter("name");
+        for (User user : userList) {
+            if (user.getName().equals(name)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 }
