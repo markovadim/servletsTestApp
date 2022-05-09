@@ -14,6 +14,11 @@
         <li>Name: <c:out value="${user.name}"></c:out></li>
         <li>Age: <c:out value="${user.age}"></c:out></li>
         <li>Email: <c:out value="${user.email}"></c:out></li>
+
+        <form method="post" action="/delete">
+            <input type="number" hidden name="user" value="${user}"/>
+            <input type="submit" value="Delete user"><br>
+        </form>
     </ul>
     <hr/>
 </c:forEach>
