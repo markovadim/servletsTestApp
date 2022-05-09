@@ -19,11 +19,8 @@
 </c:forEach>
 
 <h2>New User</h2>
-<form method="post" action="/home">
-    <label><input type="text" name="name"></label>Name<br>
-    <label><input type="number" name="age"></label>Age<br>
-    <label><input type="text" name="email"></label>Email<br>
-    <input type="submit" value="Ok"><br>
+<form method="get" action="/add">
+    <input type="submit" value="Addition user in list"><br>
 </form>
 
 </body>
