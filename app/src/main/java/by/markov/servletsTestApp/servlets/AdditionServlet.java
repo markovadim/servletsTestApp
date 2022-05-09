@@ -38,8 +38,8 @@ public class AdditionServlet extends HttpServlet {
         final String age = request.getParameter("age");
         final String email = request.getParameter("email");
 
-        if (checkUser(request)) {
-            System.out.println("User is not corrected.");
+        if (checkUserName(request) || checkUserAge(request)) {
+            System.out.println("User Name or age is not corrected.");
         } else {
             final User user = new User(name, Integer.parseInt(age), email);
             userList.add(user);
@@ -47,7 +47,7 @@ public class AdditionServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/home");
     }
 
-    private boolean checkUser(HttpServletRequest request) {
+    private boolean checkUserName(HttpServletRequest request) {
         boolean result = false;
         final String name = request.getParameter("name");
         for (User user : userList) {
@@ -55,6 +55,15 @@ public class AdditionServlet extends HttpServlet {
                 result = true;
                 break;
             }
+        }
+        return result;
+    }
+
+    private boolean checkUserAge(HttpServletRequest request) {
+        boolean result = false;
+        final String age = request.getParameter("age");
+        if (Integer.parseInt(age) <= 0) {
+            result = true;
         }
         return result;
     }
