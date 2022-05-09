@@ -7,7 +7,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @WebServlet(name = "HomePageServlet", value = "/home")
 public class HomePageServlet extends HttpServlet {
@@ -17,9 +16,7 @@ public class HomePageServlet extends HttpServlet {
     public void init() {
         final Object usList = getServletContext().getAttribute("userList");
         if (usList == null) {
-            System.out.println("List is empty");
-            userList = new CopyOnWriteArrayList<>();
-            userList.add(new User("Vadim M", 28, "markovadim@gmail.com"));
+            throw new IllegalStateException("List is not initialize.");
         } else {
             this.userList = (List<User>) usList;
         }
