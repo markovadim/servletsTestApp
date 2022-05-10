@@ -25,8 +25,8 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        System.out.println(req.getParameter("name"));
-        userList.remove(req.getParameter("name"));
+        req.setCharacterEncoding("UTF-8");
+        userList.removeIf(user -> user.getName().equals(req.getParameter("name")));
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 }
