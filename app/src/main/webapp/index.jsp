@@ -16,8 +16,8 @@
         <li>Email: <c:out value="${user.email}"></c:out></li>
 
         <form method="post" action="/delete">
-            <input type="number" hidden name="user" value="${user}"/>
-            <input type="submit" value="Delete user"><br>
+            <input type="text" hidden name="name" value="${user.name}"/>
+            <input type="submit" name="delete" value="Delete user"><br>
         </form>
     </ul>
     <hr/>
