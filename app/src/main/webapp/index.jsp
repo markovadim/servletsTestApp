@@ -14,10 +14,15 @@
         <li>Name: <c:out value="${user.name}"></c:out></li>
         <li>Age: <c:out value="${user.age}"></c:out></li>
         <li>Email: <c:out value="${user.email}"></c:out></li>
-
+        <br>
         <form method="post" action="/delete">
             <input type="text" hidden name="name" value="${user.name}"/>
             <input type="submit" name="delete" value="Delete user"><br>
+        </form>
+
+        <form method="post" action="/update">
+            <input type="text" hidden name="name" value="${user.name}"/>
+            <input type="submit" name="update" value="Update user"><br>
         </form>
     </ul>
     <hr/>
