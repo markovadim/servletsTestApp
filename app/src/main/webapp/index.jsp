@@ -20,7 +20,7 @@
             <input type="submit" name="delete" value="Delete user"><br>
         </form>
 
-        <form method="post" action="/update">
+        <form action="/update">
             <input type="text" hidden name="name" value="${user.name}"/>
             <input type="submit" name="update" value="Update user"><br>
         </form>
